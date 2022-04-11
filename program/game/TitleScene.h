@@ -1,6 +1,8 @@
 #pragma once
 #include"Scene.h"
 
+class GameManager;
+
 class TitleScene:public BaseScene 
 {
 
@@ -12,7 +14,7 @@ public:
 	void Draw();
 
 private:
-
+	GameManager* gManager = nullptr;
 
 
 };

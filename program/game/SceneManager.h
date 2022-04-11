@@ -12,11 +12,11 @@ public:
 
 	};
 
-	static void ChangeScene(SCENE scene);     //
+	static void ChangeScene(SCENE Scene);     //
 	static void Update();                     //
 	static void Render();                     //
 
-	static BaseScene* m_pScene;               //
+	static BaseScene* nowScene;               //
 
 	static void Save();
 	static void Load();

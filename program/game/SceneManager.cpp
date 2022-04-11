@@ -5,26 +5,26 @@
 #include"InGameScene.h"
 
 
-BaseScene* SceneManager::m_pScene = NULL;       //始めはシーンは空
+BaseScene* SceneManager::nowScene = NULL;       //始めはシーンは空
 
-void SceneManager::ChangeScene(SCENE scene) {
+void SceneManager::ChangeScene(SCENE Scene) {
 
-    if (m_pScene != NULL) {
-        delete m_pScene;
+    if (nowScene != NULL) {
+        delete nowScene;
     }
 
-    switch (scene) {          //引数のシーン
+    switch (Scene) {          //引数のシーン
     case SCENE::TITLE:
-        m_pScene = new TitleScene();      //タイトルシーンを現在のシーンにする
+        nowScene = new TitleScene();      //タイトルシーンを現在のシーンにする
         break;
     case SCENE::INGAME:
-        m_pScene = new InGameScene();       //ダンジョンシーンを現在のシーンにする
+        nowScene = new InGameScene();       //ダンジョンシーンを現在のシーンにする
         break;
     //case SCENE::TRAINING:
-    //    m_pScene = new TrainingScene();     //バトルシーンを現在のシーンにする
+    //    nowScene = new TrainingScene();     //バトルシーンを現在のシーンにする
     //    break;
     //case SCENE::BATTLE:
-    //    m_pScene = new BattleScene();     //バトルシーンを現在のシーンにする
+    //    nowScene = new BattleScene();     //バトルシーンを現在のシーンにする
     //    break;
     default:
         break;
@@ -33,21 +33,21 @@ void SceneManager::ChangeScene(SCENE scene) {
 }
 
 void SceneManager::Update() {
-    m_pScene->Update();         //現在のシーンの更新関数
+    nowScene->Update();         //現在のシーンの更新関数
 }
 
 void SceneManager::Render() {
-    m_pScene->Draw();           //現在のシーンの描画関数
+    nowScene->Draw();           //現在のシーンの描画関数
 }
 
 void SceneManager::Save()
 {
-    m_pScene->Save();
+    nowScene->Save();
 
 
 }
 
 void SceneManager::Load()
 {
-    m_pScene->Load();
+    nowScene->Load();
 }

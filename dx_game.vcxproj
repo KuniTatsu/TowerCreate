@@ -11,10 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="program\game\Player.cpp" />
+    <ClCompile Include="program\game\Camera.cpp" />
+    <ClCompile Include="program\game\MapManager.cpp" />
     <ClCompile Include="program\dxlib_ext\dxlib_ext.cpp" />
+    <ClCompile Include="program\game\Block.cpp" />
     <ClCompile Include="program\game\GameManager.cpp" />
     <ClCompile Include="program\game\game_main.cpp" />
     <ClCompile Include="program\game\IngameScene.cpp" />
+    <ClCompile Include="program\game\Object.cpp" />
     <ClCompile Include="program\game\SceneManager.cpp" />
     <ClCompile Include="program\game\TitleScene.cpp" />
     <ClCompile Include="program\library\tnl_font_texture.cpp" />
@@ -29,10 +34,15 @@
     <ClCompile Include="program\system\sys_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="program\game\Player.h" />
+    <ClInclude Include="program\game\Camera.h" />
+    <ClInclude Include="program\game\MapManager.h" />
     <ClInclude Include="program\dxlib_ext\dxlib_ext.h" />
+    <ClInclude Include="program\game\Block.h" />
     <ClInclude Include="program\game\GameManager.h" />
     <ClInclude Include="program\game\game_main.h" />
     <ClInclude Include="program\game\InGameScene.h" />
+    <ClInclude Include="program\game\Object.h" />
     <ClInclude Include="program\game\Scene.h" />
     <ClInclude Include="program\game\SceneManager.h" />
     <ClInclude Include="program\game\TitleScene.h" />

@@ -1,8 +1,11 @@
 #include "GameManager.h"
 #include"SceneManager.h"
 #include"DxLib.h"
-#include"../dxlib_ext/dxlib_ext.h"
 #include<string>
+#include"Block.h"
+#include"MapManager.h"
+#include"Camera.h"
+#include"Player.h"
 
 //#include"Item.h"
 //#include "FadeControl.h"
@@ -18,9 +21,14 @@ GameManager::GameManager()
 GameManager* GameManager::Instance()
 {
 	if (instance == nullptr) {
-		instance = new GameManager;
+		instance = new GameManager();
 	}
 	return instance;
+}
+
+bool GameManager::SortWithPriority(Object* obj1, Object* obj2)
+{
+	return obj1->GetPriority() < obj2->GetPriority();
 }
 
 GameManager::~GameManager()
@@ -39,31 +47,64 @@ void GameManager::Draw()
 
 void GameManager::initGameManager()
 {
-
+	mManager = new MapManager;
+	camera = new Camera();
+	player = new Player();
 	//sound = new Sound();
 	//fControl = new FadeControl();
 
 	deitatime_ = 0;
 
 	SceneManager::ChangeScene(SceneManager::SCENE::TITLE);
+	testGraphic = LoadGraphEx("graphics/test_1.png");
+	
 
+	//Block* testBlock1 = new Block(300, 300, 10, testGraphic);
+
+	mManager->MakeMap();
+	objects.sort(SortWithPriority);
 }
 
-int GameManager::LoadGraphEx(std::string gh)
+int GameManager::LoadGraphEx(std::string Gh)
 {
 
-	auto it = ghmap.find(gh);
+	auto it = ghmap.find(Gh);
 	if (it != ghmap.end()) {
-		return ghmap[gh];
+		return ghmap[Gh];
 	}
 
 	else {
-		int loadgh = LoadGraph(gh.c_str());
-		ghmap.insert(std::make_pair(gh, loadgh));
+		int loadgh = LoadGraph(Gh.c_str());
+		ghmap.insert(std::make_pair(Gh, loadgh));
 	}
 
 
-	return ghmap[gh];
+	return ghmap[Gh];
+}
+
+void GameManager::DrawRotaGraphNormal(int X, int Y, int GrHandle, int TransFlag)
+{
+	DrawRotaGraph(X, Y, 1, 0, GrHandle, true);
+}
+
+void GameManager::Move()
+{
+	camera->Move();
+}
+
+tnl::Vector3& GameManager::GetCameraPos()
+{
+	return camera->GetPos();
+}
+
+void GameManager::PlayerMove()
+{
+	player->Move();
+}
+
+void GameManager::PlayerDraw()
+{
+	player->render(deitatime_);
 }
 
 
